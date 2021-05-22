@@ -53,13 +53,13 @@ css .btn d:block px:1 bg:teal2
 css .btn@hover bg:teal3
 ```
 
-There are also some patterns that come up again and again in css. Changing a few properties on `hover` or other states, or setting certain dimensions for specific screen sizes etc. Imba got you covered with property modifiers that we will get into later. But to round up, the first block of css here would usually be written like this in Imba:
+There are also some patterns that come up again and again in css. Changing a few properties on `hover` or other states, or setting certain dimensions for specific screen sizes etc. Imba has got you covered with property modifiers that we will get into later. But to summarize, the first block of css here would usually be written like this in Imba:
 
 ```imba
 css .btn d:block px:1 bg:teal2 bg@hover:teal3
 ```
 
-This conciseness comes especially handy when declaring inline styles, which we will come back to later.
+This conciseness becomes especially handy when declaring inline styles, which we will come back to later.
 
 
 ### Nested Selectors
@@ -78,9 +78,9 @@ css .card
 
 ### Global Selectors
 
-A problem with CSS is that often end up with tons of globally competing styles spread around numerous files. Changing some styles in one place might affect some seemingly unrelated elements. In Imba it is really easy to declare styles that should only apply to certain parts of your application.
+A problem with CSS is that you can often end up with tons of globally competing styles spread around numerous files. Changing some styles in one place might affect some seemingly unrelated elements. In Imba it is really easy to declare styles that should only apply to certain parts of your application.
 
-By default, any style rules declared at the top level of your file using `css selector ...` will only apply to the elements declared inside that file. The `button` style above will only affect literal `button` tags rendered **in the same file**. This means that you can declare styles like this in your file without having to worry about affecting styles in other parts of your application, or even inside nested components that are defined in other files, but used here.
+By default, any style rules declared at the top level of your file using `css selector ...` will only apply to the elements declared inside that file. The `button` style above will only affect literal `button` tags rendered **in the same file**. This means that you can declare styles like this in your file without having to worry about affecting styles in other parts of your application, or even inside components that are defined in other files, but nested into the current file.
 
 ```imba
 css button
@@ -91,7 +91,7 @@ css button
 # rest of file ...
 ```
 
-If you prefix your css declaration with the `global` keyword - the styles will apply globally, and in this example affect all `button` elements in your application. The styles will be included as long as they are required somewhere.
+If you prefix your css declaration with the `global` keyword - the styles will apply globally. For instance, this example affect all `button` elements in your application. The styles will be included as long as they are required somewhere.
 
 ```imba
 global css button
@@ -120,7 +120,7 @@ tag app-card
         <.body> <p> "Card Paragraph"
 
 tag app-root
-    # local styles does not leak into app-card
+    # local styles do not leak into app-card
     css .header bg:green3 p:4 fw:600
 
     <self>
@@ -130,6 +130,8 @@ tag app-root
 # ---
 imba.mount do <app-root[d:grid gap:4 p:4]>
 ```
+
+<!-- DONE FOR NOW, SESSION ONE -->
 
 Any style you declare in a tag declaration will only ever affect the literal tags inside the declaration. You don't need to worry about affecting styles of deeply nested elements that might share the same class names. This is very practical, and allows us to safely use short and descriptive class names like `header`, `footer`, `body`, `content` etc, and use them for styling.
 
